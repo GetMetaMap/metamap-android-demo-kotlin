@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Metamap Kotlin Demo"
+rootProject.name = "Metamap Android Demo Kotlin"
 include ':app'
