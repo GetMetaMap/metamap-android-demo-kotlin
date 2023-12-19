@@ -1,96 +1,78 @@
 package com.metamap.kotlin_demo
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.metamap.metamap_sdk.Metadata
-import com.metamap.metamap_sdk.MetamapButton
-import com.metamap.metamap_sdk.MetamapSdk.ARG_IDENTITY_ID
-import com.metamap.metamap_sdk.MetamapSdk.ARG_VERIFICATION_ID
-import com.metamap.metamap_sdk.MetamapSdk.DEFAULT_REQUEST_CODE
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val btn = findViewById<MetamapButton>(R.id.metamapButton)
-
-        btn.setParams(
-            this,
-            "YOUR_CLIENT_ID",
-            "YOUR_FLOW_ID",
-            Metadata.Builder()
-                .with("userId", "qwfguweo")
-                .with("type", 2)
-                .build()
-        )
+        findViewById<View>(R.id.methodCall).setOnClickListener(listener)
+        findViewById<View>(R.id.metamapButton).setOnClickListener(listener)
+        findViewById<View>(R.id.metadata).setOnClickListener(listener)
+        findViewById<View>(R.id.onActivityResult).setOnClickListener(listener)
+        findViewById<View>(R.id.resultApi).setOnClickListener(listener)
+        findViewById<View>(R.id.colorsCustomization).setOnClickListener(listener)
+        findViewById<View>(R.id.fontCustomization).setOnClickListener(listener)
+        findViewById<View>(R.id.facematch).setOnClickListener(listener)
+        findViewById<View>(R.id.cooldown).setOnClickListener(listener)
+        findViewById<View>(R.id.onDemandConfig).setOnClickListener(listener)
+        findViewById<View>(R.id.encryptionConfig).setOnClickListener(listener)
+        findViewById<View>(R.id.smartCapture).setOnClickListener(listener)
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == DEFAULT_REQUEST_CODE) {
-            if (resultCode == RESULT_OK && data != null) {
-                // There are no request codes
-                Toast.makeText(
-                    this,
-                    "onActivityResult Verification success! " +
-                            "VerificationId:" + data.getStringExtra(ARG_VERIFICATION_ID) +
-                            "IdentityId: " + data.getStringExtra(ARG_IDENTITY_ID),
-                    Toast.LENGTH_SHORT
-                ).show()
-            } else {
-                if (data != null) {
-                    Toast.makeText(
-                        this,
-                        "onActivityResult Verification cancelled! " +
-                                "VerificationId:" + data.getStringExtra(ARG_VERIFICATION_ID) +
-                                "IdentityId: " + data.getStringExtra(ARG_IDENTITY_ID),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Toast.makeText(
-                        this,
-                        "onActivityResult Verification cancelled!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
+    private val listener = View.OnClickListener { v: View ->
+        when (v.id) {
+            R.id.methodCall -> {
+                startActivity(Intent(this@MainActivity, MethodCallActivity::class.java))
             }
-        } else {
-            super.onActivityResult(requestCode, resultCode, data)
+
+            R.id.metamapButton -> {
+                startActivity(Intent(this@MainActivity, MetamapButtonActivity::class.java))
+            }
+
+            R.id.metadata -> {
+                startActivity(Intent(this@MainActivity, MetadataActivity::class.java))
+            }
+
+            R.id.onActivityResult -> {
+                startActivity(Intent(this@MainActivity, OnActivityResultActivity::class.java))
+            }
+
+            R.id.resultApi -> {
+                startActivity(Intent(this@MainActivity, ResultApiActivity::class.java))
+            }
+
+            R.id.colorsCustomization -> {
+                startActivity(Intent(this@MainActivity, ColorsCustomizationActivity::class.java))
+            }
+
+            R.id.fontCustomization -> {
+                startActivity(Intent(this@MainActivity, FontCustomizationActivity::class.java))
+            }
+
+            R.id.facematch -> {
+                startActivity(Intent(this@MainActivity, FaceMatchActivity::class.java))
+            }
+
+            R.id.cooldown -> {
+                startActivity(Intent(this@MainActivity, CooldownActivity::class.java))
+            }
+
+            R.id.onDemandConfig -> {
+                startActivity(Intent(this@MainActivity, OnDemandConfigActivity::class.java))
+            }
+
+            R.id.encryptionConfig -> {
+                startActivity(Intent(this@MainActivity, EncryptionConfigActivity::class.java))
+            }
+
+            R.id.smartCapture -> {
+                startActivity(Intent(this@MainActivity, SmartCaptureActivity::class.java))
+            }
         }
     }
-
-
-//    var resultLauncher: ActivityResultLauncher<Intent> = registerForActivityResult(
-//        ActivityResultContracts.StartActivityForResult()
-//    ) { result ->
-//        val data: Intent? = result.getData()
-//        if (data == null) {
-//            Toast.makeText(this@MainActivity, "Verification cancelled", Toast.LENGTH_SHORT)
-//                .show()
-//            return@registerForActivityResult
-//        }
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            // There are no request codes
-//            Toast.makeText(
-//                this@MainActivity,
-//                "Verification success! " +
-//                        "VerificationId:" + data.getStringExtra(ARG_VERIFICATION_ID) +
-//                        "IdentityId: " + data.getStringExtra(ARG_IDENTITY_ID),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        } else {
-//            Toast.makeText(
-//                this@MainActivity,
-//                "Verification cancelled! " +
-//                        "VerificationId:" + data.getStringExtra(ARG_VERIFICATION_ID) +
-//                        "IdentityId: " + data.getStringExtra(ARG_IDENTITY_ID),
-//                Toast.LENGTH_SHORT
-//            ).show()
-//        }
-//    }
 }

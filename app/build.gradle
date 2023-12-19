@@ -43,7 +43,7 @@ dependencies {
 
 
     //Dependency for Mati
-    implementation ('com.metamap:android-sdk:3.19.1'){
-        exclude group: 'org.json', module: 'json'
-    }
+    implementation "com.metamap:android-sdk:3.37.1"
+    implementation "com.metamap:android-sdk-smart-capture:0.2.0"
+
 }
