@@ -18,12 +18,13 @@ class FontCustomizationActivity : AppCompatActivity() {
             flowId = "YOUR_FLOW_ID",
             metadata = Metadata.Builder()
                 .uiConfig(
-                    UIConfig(
-                        fontConfig = FontConfig(
+                    UIConfig.Builder()
+                        .fontConfig (
+                            FontConfig(
                             "comic_neue.ttf",
                             "comic_neue_bold.ttf"
                         )
-                    )
+                    ).build()
                 )
                 .build()
         )

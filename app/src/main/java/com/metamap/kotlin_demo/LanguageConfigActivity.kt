@@ -18,8 +18,11 @@ class LanguageConfigActivity : AppCompatActivity() {
             clientId = "YOUR_CLIENT_ID",
             flowId = "YOUR_FLOW_ID",
             metadata = Metadata.Builder()
-                .uiConfig(UIConfig(MetamapLanguage.SPANISH))
-                .build()
+                .uiConfig(
+                    UIConfig.Builder()
+                        .fixedLanguage(MetamapLanguage.SPANISH)
+                        .build()
+                ).build()
         )
     }
 }

@@ -20,15 +20,14 @@ class ColorsCustomizationActivity : AppCompatActivity() {
             flowId = "YOUR_FLOW_ID",
             metadata = Metadata.Builder()
                 .uiConfig(
-                    UIConfig(
-                        accentColor = ContextCompat.getColor(this, R.color.colorAccent),
-                        titleTextColor = ContextCompat.getColor(this, R.color.titleTextColor),
-                        subtitleTextColor = ContextCompat.getColor(this, R.color.subtitleTextColor),
-                        backgroundColor = ContextCompat.getColor(this, R.color.backgroundColor),
-                        lineColor = ContextCompat.getColor(this, R.color.lineColor),
-                    )
-                )
-                .build()
+                    UIConfig.Builder()
+                        .accentColor(ContextCompat.getColor(this, R.color.colorAccent))
+                        .titleTextColor(ContextCompat.getColor(this, R.color.titleTextColor))
+                        .subtitleTextColor(ContextCompat.getColor(this, R.color.subtitleTextColor))
+                        .backgroundColor(ContextCompat.getColor(this, R.color.backgroundColor))
+                        .lineColor(ContextCompat.getColor(this, R.color.lineColor))
+                        .build()
+                ).build()
         )
     }
 }
